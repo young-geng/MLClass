@@ -20,6 +20,13 @@ p = zeros(size(X, 1), 1);
 %       information see 'help max'. If your examples are in rows, then, you
 %       can use max(A, [], 2) to obtain the max for each row.
 %
+for iter = 1:size(X, 1)
+	temp = [1 X(iter, :)];
+	temp = [1; sigmoid(Theta1 * temp')];
+
+	p(iter, 1) = predictResult(sigmoid(Theta2 * temp));
+end
+
 
 
 
@@ -32,4 +39,16 @@ p = zeros(size(X, 1), 1);
 % =========================================================================
 
 
+end
+
+
+function p = predictResult(r)
+	max_p = -1;
+	p = 0;
+	for iter = 1:size(r, 1)
+		if max_p < r(iter)
+			p = iter;
+			max_p = r(iter, 1);
+		end
+	end
 end

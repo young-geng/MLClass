@@ -29,7 +29,9 @@ X = [ones(m, 1) X];
 %       are in rows, then, you can use max(A, [], 2) to obtain the max 
 %       for each row.
 %       
-
+for iter = 1:size(X, 1)
+	p(iter, 1) = predictOne(all_theta, X(iter, :));
+end
 
 
 
@@ -39,4 +41,17 @@ X = [ones(m, 1) X];
 % =========================================================================
 
 
+end
+
+
+function p = predictOne(all_theta, X)
+	p = 0;
+	max_p = -1;
+	r = sigmoid(all_theta * (X'));
+	for iter = 1:size(all_theta, 1)
+		if max_p < r(iter)
+			p = iter;
+			max_p = r(iter, 1);
+		end
+	end
 end
