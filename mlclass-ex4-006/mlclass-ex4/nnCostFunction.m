@@ -63,8 +63,15 @@ Theta2_grad = zeros(size(Theta2));
 %
 
 
+for iter = 1:m
+	r = zeros(num_labels, 1);
+	r(y(iter), 1) = 1;
+	temp = [1 X(iter, :)];
+	temp = [1; sigmoid(Theta1 * temp')];
+	J += sum(-r .* log(sigmoid(Theta2 * temp)) - (1 - r) .* log(1 - sigmoid(Theta2 * temp)));
+end
 
-
+J = J ./  m;
 
 
 
