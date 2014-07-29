@@ -68,14 +68,14 @@ for iter = 1:m
 	r(y(iter), 1) = 1;
 	temp = [1 X(iter, :)];
 	temp = [1; sigmoid(Theta1 * temp')];
-	J += sum(-r .* log(sigmoid(Theta2 * temp)) - (1 - r) .* log(1 - sigmoid(Theta2 * temp)));
+	J = J + sum(-r .* log(sigmoid(Theta2 * temp)) - (1 - r) .* log(1 - sigmoid(Theta2 * temp)));
 end
 
-J = J ./  m;
+J = J ./  m + (sum(sum(Theta1(:, 2:end) .^ 2)) + sum(sum(Theta2(:, 2:end) .^ 2))) * lambda / 2 / m ;
 
 
 
-
+%Delta2 = 
 
 
 
