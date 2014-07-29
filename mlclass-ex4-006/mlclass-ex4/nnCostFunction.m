@@ -71,7 +71,7 @@ for iter = 1:m
 	J = J + sum(-r .* log(sigmoid(Theta2 * temp)) - (1 - r) .* log(1 - sigmoid(Theta2 * temp)));
 end
 
-<<<<<<< HEAD
+
 J = J ./  m + lambda / 2 / m * (sum(sum(Theta1(:, 2:end) .^ 2)) + sum(sum(Theta2(:, 2:end) .^ 2)));
 
 
@@ -92,9 +92,8 @@ Theta1_grad(:, 1) = zeros(size(Theta1_grad, 1), 1);
 Theta2_grad(:, 1) = zeros(size(Theta2_grad, 1), 1);
 Theta1_grad = Theta1_grad / m;
 Theta2_grad = Theta2_grad / m;
-=======
+
 J = J ./  m + (sum(sum(Theta1(:, 2:end) .^ 2)) + sum(sum(Theta2(:, 2:end) .^ 2))) * lambda / 2 / m ;
->>>>>>> 851e54bcb0927eeb867f9c4ba367428dfd9f8160
 
 
 

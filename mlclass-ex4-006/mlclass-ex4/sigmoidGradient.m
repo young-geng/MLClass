@@ -15,10 +15,7 @@ g = zeros(size(z));
 
 
 g = sigmoid(z) .* (1 - sigmoid(z));
-<<<<<<< HEAD
 
-=======
->>>>>>> 851e54bcb0927eeb867f9c4ba367428dfd9f8160
 
 
 
