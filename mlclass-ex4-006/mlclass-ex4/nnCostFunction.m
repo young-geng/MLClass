@@ -90,8 +90,8 @@ for t = 1:m
   Theta2_grad = Theta2_grad + d3 * a2';
 end
 
-Theta1_grad = Theta1_grad / m;
-Theta2_grad = Theta2_grad / m;
+Theta1_grad = Theta1_grad / m + [zeros(size(Theta1_grad, 1), 1), lambda / m * Theta1(:, 2:end)];
+Theta2_grad = Theta2_grad / m + [zeros(size(Theta2_grad, 1), 1), lambda / m * Theta2(:, 2:end)];
 
 
 
