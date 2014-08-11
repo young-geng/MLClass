@@ -22,8 +22,21 @@ sigma = 0.3;
 %  Note: You can compute the prediction error using 
 %        mean(double(predictions ~= yval))
 %
-
-
+CList = [0.01, 0.03, 0.1, 0.3, 1, 3, 10, 30];
+sigmaList = [0.01, 0.03, 0.1, 0.3, 1, 3, 10, 30];
+bestValidation = 0;
+for CIter = CList
+	for sigmaIter = sigmaList
+		fprintf('training C / sigma pair: %f, %f\n', CIter, sigmaIter);
+		% Suppress console output
+		[Out, model] = evalc('svmTrain(X, y, CIter, @(x1, x2)gaussianKernel(x1, x2, sigmaIter))');
+		if sum(svmPredict(model, Xval) == yval) > bestValidation
+			bestValidation = sum(svmPredict(model, Xval) == yval);
+			C = CIter;
+			sigma = sigmaIter;
+		end
+	end
+end
 
 
 
