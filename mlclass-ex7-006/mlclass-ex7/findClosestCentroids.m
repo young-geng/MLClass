@@ -21,7 +21,15 @@ idx = zeros(size(X,1), 1);
 % Note: You can use a for-loop over the examples to compute this.
 %
 
-
+for iter = 1:size(X, 1)
+	dist = inf;
+	for iter2 = 1:K
+		if sum((X(iter, :) - centroids(iter2, :)) .^ 2) < dist
+			dist = sum((X(iter, :) - centroids(iter2, :)) .^ 2);
+			idx(iter, 1) = iter2;
+		end
+	end
+end
 
 
 
